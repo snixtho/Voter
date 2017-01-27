@@ -1,0 +1,152 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+
+}
+
+maincontainer {
+	display: block;
+	position: fixed;
+	overflow: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+realtime-input {
+	display: block;
+	width: 99%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+realtime-input label {
+	display: inline-block;
+	width: 25%;
+	text-align: right;
+}
+
+realtime-input input {
+	display: inline-block;
+	font-size: 16px;
+	font-family: Arial;
+}
+
+.centering-t {
+	width: 100%;
+	height: 100%;
+}
+
+.centering-t-td {
+	vertical-align: middle;
+	width: 100%;
+}
+
+/*************** LOGIN ***************/
+
+#login-t {
+	background-color: #E2E9EF;
+	border-collapse: collapse;
+	width: 320px;
+	height: 150px;
+	margin: 0 auto;
+}
+
+#login-t-header {
+	background-color: #D3DEE7;
+	height: 32px;
+	font-size: 20px;
+	font-family: Calibri;
+	font-weight: bold;
+	padding: 3px;
+	color: #2D4053;
+	text-align: center;
+}
+
+#login-t-body {
+	text-align: center;
+}
+
+#login-t-body realtime-input label {
+	font-size: 16px;
+	font-family: Arial;
+}
+
+#login-t-body realtime-input input {
+	font-size: 16px;
+	font-family: Arial;
+	padding: 3px;
+	outline: none;
+}
+
+.rt-submit {
+	position: relative;
+}
+
+.rt-submit input {
+	display: inline-block;
+}
+
+.rt-status {
+	display: inline-block;
+	vertical-align: middle;
+	position: absolute;
+	right: 15px;
+	margin-top: 7px;
+}
+
+/*************** VOTING PANEL ***************/
+
+#votingpanel-t {
+	margin: 0 auto;
+	width: 500px;
+	background-color: #E2E9EF;
+	border-collapse: collapse;
+}
+
+
+#votingpanel-t-header {
+	background-color: #D3DEE7;
+	height: 32px;
+	font-size: 20px;
+	font-family: Calibri;
+	font-weight: bold;
+	padding: 3px;
+	color: #2D4053;
+	text-align: center;
+}
+
+#votingpanel-t-body {
+
+}
+
+#votingpanel-entries-t {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#votingpanel-entries-t td > button {
+
+}
+
+.votingpanel-entry {
+	border-collapse: collapse;
+}
+
+.votingpanel-entry td {
+	padding: 5px;
+	font-size: 14px;
+	font-family: Arial;
+}
+
+.votingpanel-entrytext {
+	width: 100%;
+}
+
+.votingpanel-votebtn button {
+	padding: 2px;
+}

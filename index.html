@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Voting</title>
+		<link rel="stylesheet" type="text/css" href="static/index.css" />
+	</head>
+
+	<body>
+		<maincontainer>
+			<!-- LOGIN HTML: START -->
+			<table class="centering-t">
+				<tr>
+					<td class="centering-t-td">
+						<table id="login-t">
+							<tr>
+								<td id="login-t-header">
+									Login
+								</td>
+							</tr>
+							<tr>
+								<td id="login-t-body">
+									<realtime-form autocomplete="off">
+										<realtime-input required>
+											<label>Username:</label>
+											<input class="test" type="text" name="login_email" />
+											<rt-error-msg></rt-error-msg>
+										</realtime-input>
+										<realtime-input required>
+											<label>Password:</label>
+											<input type="password" name="login_password" />
+											<rt-error-msg></rt-error-msg>
+										</realtime-input>
+										<div class="lb-solid"></div>
+										<realtime-input class="rt-submit">
+											<input type="submit" value="Login" />
+											<img style="display:none;" width="16" height="16" class="rt-status" alt="Status: Idle" src="static/img/error.png" />
+										</realtime-input>
+									</realtime-form>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<!-- LOGIN HTML: END -->
+
+			<!-- VOTING PANEL: START -->
+			<!-- <table id="votingpanel-t">
+				<tr>
+					<td id="votingpanel-t-header">
+						Vote for one or more (if possible) entries
+					</td>
+				</tr>
+				<tr>
+					<td id="votingpanel-t-body">
+						<table id="votingpanel-entries-t">
+							<tr>
+								<td>
+									<table class="votingpanel-entry">
+										<tr>
+											<td class="votingpanel-entrytext">Entry 1</td>
+											<td class="votingpanel-votebtn"><button>VOTE</button></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table> -->
+			<!-- VOTING PANEL: END -->
+		</maincontainer>
+		<script type="text/javascript" src="static/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="static/js.cookie.js"></script>
+		<script type="text/javascript" src="static/index.js"></script>
+	</body>
+</html>
