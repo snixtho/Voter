@@ -1,0 +1,16 @@
+<table id="page_welcome">
+	<tr>
+		<td id="welcome-header"></td>
+	</tr>
+	<tr>
+		<td id="welcome-body">
+			<span class="smallhtext">Available polls:</span>
+			<img id="welcome-refresh" title="Click to refresh the poll list." height="16" width="11" src="static/img/refresh.png" onClick="javascript:pollList.refresh();" />
+			<ul id="welcome-poll-list">
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td><a href="javascript:Cookies.set('sessionkey', '');Cookies.set('username', '');window.location='';" class="home-link"><< Logout</a></td>
+	</tr>
+</table>

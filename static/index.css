@@ -46,6 +46,30 @@ realtime-input input {
 	width: 100%;
 }
 
+.smallhtext {
+	font-size: 18px;
+	font-family: Calibri;
+	font-weight: bold;
+}
+
+.one { background-color: #D8E1E9; }
+.one:hover { background-color: #E7ECF1; }
+.one:active { background-color: #8BA4BC; }
+
+.two { background-color: #CBD8E2; }
+.two:hover { background-color: #E7ECF1; }
+.two:active { background-color: #8BA4BC; }
+
+.home-link {
+	text-decoration: none;
+	color: #45647A;
+	font-size: 13px;
+	font-family: Arial;
+}
+
+.home-link:hover {color: #789AB4;}
+.home-link:active {color: #21303A;}
+
 /*************** LOGIN ***************/
 
 #login-t {
@@ -67,9 +91,7 @@ realtime-input input {
 	text-align: center;
 }
 
-#login-t-body {
-	text-align: center;
-}
+#login-t-body { text-align: center; }
 
 #login-t-body realtime-input label {
 	font-size: 16px;
@@ -83,13 +105,9 @@ realtime-input input {
 	outline: none;
 }
 
-.rt-submit {
-	position: relative;
-}
+.rt-submit { position: relative; }
 
-.rt-submit input {
-	display: inline-block;
-}
+.rt-submit input { display: inline-block; }
 
 .rt-status {
 	display: inline-block;
@@ -101,7 +119,7 @@ realtime-input input {
 
 /*************** VOTING PANEL ***************/
 
-#votingpanel-t {
+#page_votingpanel {
 	margin: 0 auto;
 	width: 500px;
 	background-color: #E2E9EF;
@@ -143,10 +161,68 @@ realtime-input input {
 	font-family: Arial;
 }
 
-.votingpanel-entrytext {
-	width: 100%;
+.votingpanel-entrytext { width: 100%; }
+
+.votingpanel-votebtn button { padding: 2px; }
+
+.votingpanel-results-btn {text-align: right;}
+
+/*************** WELCOME PAGE ***************/
+
+#page_welcome {
+	margin: 0 auto;
+	width: 500px;
+	background-color: #E2E9EF;
+	border-collapse: collapse;
 }
 
-.votingpanel-votebtn button {
-	padding: 2px;
+#welcome-header {
+	background-color: #D3DEE7;
+	height: 32px;
+	font-size: 20px;
+	font-family: Calibri;
+	font-weight: bold;
+	padding: 3px;
+	color: #2D4053;
+	text-align: center;
 }
+
+#welcome-body { padding: 5px; }
+
+#welcome-poll-list {
+	list-style: none;
+	margin-top: 5px;
+}
+
+#welcome-poll-list li {
+	font-size: 15px;
+	font-family: Arial;
+	color: #45647A;
+	cursor: pointer;
+	padding: 1px;
+	position: relative;
+	padding-left: 5px;
+}
+
+#welcome-poll-list li:before {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	width: 3px;
+	height: 3px;
+	background-color: #45647A;
+	top: 8px;
+	left: 1px;
+}
+
+#welcome-poll-list li:hover { color: #233441; }
+#welcome-poll-list li:active { color: black; }
+
+#welcome-refresh {
+	cursor: pointer;
+	display: inline-block;
+	margin-left: 5px;
+	vertical-align: middle
+}
+#welcome-refresh:hover { background-color: #C6D3DF; }
+#welcome-refresh:active { background-color: #BACAD8; }

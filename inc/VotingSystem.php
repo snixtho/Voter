@@ -3,10 +3,17 @@
 class VotingElement {
 	private $text;
 	private $votes;
+	private $id;
 
-	public function __construct($vtext, $vvotes=array()) {
+	public function __construct($vtext, $id, $vvotes=array()) {
 		$this->text = $vtext;
-		$this->votes = $vvotes;
+		$this->votes = array();
+		$this->id = $id;
+
+		foreach ($vvotes as $vote)
+		{
+			$this->votes[$vote] = NULL;
+		}
 	}
 
 	public function getText() {
@@ -28,7 +35,15 @@ class VotingElement {
 				return;
 		}
 
-		array_push($this->votes, $name);
+		$this->votes[strtolower($name)] = NULL;
+	}
+
+	public function hasVoted($name) {
+		return array_key_exists($name, $this->votes);
+	}
+
+	public function getId() {
+		return $this->id;
 	}
 }
 
@@ -36,6 +51,7 @@ class VotingSystem {
 	private $voteElements;
 	private $allowMultiVote;
 	private $dataPath;
+	private $pollText;
 
 	const formatSplitter = ':';
 
@@ -46,13 +62,19 @@ class VotingSystem {
 		touch($this->dataPath.'.lock');
 		$f = fopen($this->dataPath, 'w');
 
-		$contents = "";
+		$contents = $this->pollText . "\n";
 		foreach ($this->voteElements as $element)
 		{
 			$voters = '';
 			if ($element->voteCount() > 0)
 			{
-				$voters = implode(',', $element->getVotes());
+				// $voters = implode(',', $element->getVotes());
+				foreach ($element->getVotes() as $name => $v)
+				{
+					$voters .= $name . ',';
+				}
+
+				$voters = substr($voters, 0, strlen($voters)-1);
 			}
 
 			$line = $voters . VotingSystem::formatSplitter . $element->getText() . "\n";
@@ -81,15 +103,24 @@ class VotingSystem {
 			$contents = explode("\n", fread($f, filesize($dataFile)));
 			fclose($f);
 
-			foreach ($contents as $el)
+			if (count($contents) > 0)
 			{
-				if (trim($el) != '')
+				$this->pollText = $contents[0];
+				unset($contents[0]);
+
+				$id = 0;
+				foreach ($contents as $el)
 				{
-					$element = explode(VotingSystem::formatSplitter, $el);
-					$voters = array();
-					if (trim($element[0]) != "")
-						$voters = explode(',', $element[0]);
-					array_push($this->voteElements, new VotingElement($element[1], $voters));
+					if (trim($el) != '')
+					{
+						$element = explode(VotingSystem::formatSplitter, $el);
+						$voters = array();
+						if (trim($element[0]) != "")
+							$voters = explode(',', $element[0]);
+						array_push($this->voteElements, new VotingElement($element[1], $id, $voters));
+
+						$id++;
+					}
 				}
 			}
 		}
@@ -99,6 +130,10 @@ class VotingSystem {
 		}
 
 		$this->dataPath = $dataFile;
+	}
+
+	public function getText() {
+		return $this->pollText;
 	}
 
 	public function addVote($voterName, $elId) {
@@ -114,7 +149,7 @@ class VotingSystem {
 			}
 		}
 
-		if (count($this->voteElements) < $elId)
+		if (array_key_exists($elId, $this->voteElements))
 		{
 			$this->voteElements[$elId]->addVote($voterName);
 			$this->savedata();
@@ -169,6 +204,6 @@ class VotingSystem {
 
 class VotingSystemFactory {
 	public static function OpenPoll($name) {
-		return new VotingSystem(ABSPATH.'data/'.$name.'.poll');
+		return new VotingSystem(realpath(ABSPATH.'data/'.$name.'.poll'));
 	}
 };

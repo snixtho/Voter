@@ -18,7 +18,7 @@ class Auth {
 		unlink($this->dbPath.'.lock');
 	}
 
-	public function __construct($dbFile) {
+	public function __construct($dbFile, $autocreate=true) {
 		if (file_exists($dbFile) && filesize($dbFile) > 0)
 		{
 			$f = fopen($dbFile, 'r');
@@ -35,7 +35,10 @@ class Auth {
 		}
 		else
 		{
-			touch($dbFile);
+			if ($autocreate)
+			{
+				touch($dbFile);
+			}
 			$this->usersTable = array();
 		}
 
@@ -76,7 +79,7 @@ class Auth {
 		$username = strtolower($username);
 		if (array_key_exists($username, $this->usersTable))
 		{
-			$this->usersTable[$username][$accessName] = 1;
+			$this->usersTable[$username]['access'][$accessName] = NULL;
 			$this->saveUsersTable();
 		}
 	}
@@ -85,7 +88,7 @@ class Auth {
 		$username = strtolower($username);
 		if (array_key_exists($username, $this->usersTable))
 		{
-			unset($this->usersTable[$username][$accessName]);
+			unset($this->usersTable[$username]['access'][$accessName]);
 			$this->saveUsersTable();
 		}	
 	}
@@ -98,6 +101,15 @@ class Auth {
 		}
 
 		return false;
+	}
+
+	public function setAdmin($username, $isAdmin=true) {
+		$username = strtolower($username);
+		if (array_key_exists($username, $this->usersTable))
+		{
+			$this->usersTable[$username]['admin'] = $isAdmin;
+			$this->saveUsersTable();
+		}
 	}
 
 	public static function hashPassword($username, $password, $salt) {
@@ -147,6 +159,6 @@ class Auth {
 
 class AuthFactory {
 	public static function OpenAuth($universeName) {
-		return new Auth(ABSPATH.'data/'.$universeName.'.authtable');
+		return new Auth(realpath(ABSPATH.'data/'.$universeName.'.authtable'), false);
 	}
 };
